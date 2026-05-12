@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sentiment Analysis Output</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      // We specifically target the count variables so the lists don't break the chart
+      var data = google.visualization.arrayToDataTable([
+        ['Sentiment', 'Number of Comments'],
+        ['Positive', {{ data['Positive comments'] }}],
+        ['Negative', {{ data['Negative comments'] }}]
+      ]);
+
+      var options = {
+        title: 'Overall Sentiment Analysis',
+        is3D: true,
+        backgroundColor: 'transparent',
+        colors: ['#28a745', '#dc3545'] // Green for positive, Red for negative
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: rgb(240, 242, 245);
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    #piechart {
+      width: 900px; 
+      height: 400px;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      display: flex;
+      gap: 30px;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .sentiment-card {
+      flex: 1;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .positive { border-top: 5px solid #28a745; }
+    .negative { border-top: 5px solid #dc3545; }
+
+    .themes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      background: #e9ecef;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .pos-badge { background: #d4edda; color: #155724; }
+    .neg-badge { background: #f8d7da; color: #721c24; }
+
+    .comment-box {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-style: italic;
+      border-left: 4px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Analysis Results</h1>
+  
+  <div id="piechart"></div>
+
+  <div class="container">
+    
+    <div class="sentiment-card positive">
+      <h2>Positive Highlights</h2>
+      
+      <h3>Trending Themes</h3>
+      <div class="themes">
+        {% for theme in data['Positive Themes'] %}
+          <span class="badge pos-badge">{{ theme }}</span>
+        {% endfor %}
+      </div>
+
+      <h3>Top Comments</h3>
+      {% for comment in data['Top Positive'] %}
+        <div class="comment-box">{{ comment }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="sentiment-card negative">
+      <h2>Areas for Improvement</h2>
+      
+      <h3>Trending Themes</h3>
+      <div class="themes">
+        {% for theme in data['Negative Themes'] %}
+          <span class="badge neg-badge">{{ theme }}</span>
+        {% endfor %}
+      </div>
+
+      <h3>Top Comments</h3>
+      {% for comment in data['Top Negative'] %}
+        <div class="comment-box">{{ comment }}</div>
+      {% endfor %}
+    </div>
+
+  </div>
+  
+  <br>
+  <a href="/" style="text-decoration: none; background: #007bff; color: white; padding: 10px 20px; border-radius: 5px;">Analyze Another Link</a>
+
+</body>
+
+</html>
