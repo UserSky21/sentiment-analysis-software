@@ -12,13 +12,14 @@ This is a simple website that allows users to input either a YouTube video URL o
 - TensorFlow
 - Keras
 - YouTube API
+- BeautifulSoup logic for Amazon
 
 ## Installation
 
 To run the website, you will need to have Python 3 installed. You can clone this repository using the following command:
 
 ```bash
-git clone https://github.com/AbhiSinghiitr/sentiment-analysis-software.git
+https://github.com/UserSky21/sentiment-analysis-software.git
 ```
 
 Next, navigate to the cloned directory and install the required Python packages using pip:
@@ -53,6 +54,8 @@ To predict the sentiment for a sentence, simply enter the sentence in the input 
 ### Scraping YouTube comments
 
 To scrape comments from a YouTube video, enter the YouTube video URL in the input box and click the "Scrape" button. The website will scrape the comments from the video and store them in a .csv file. You can then click the "Submit" button to run the pre-trained model on the comments data and get a binary sentiment classification prediction. The prediction is displayed on the page along with the number of positive and negative comments.
+### Scraping Amazon Reviews
+To analyze customer feedback from an Amazon product, enter the Amazon product URL in the input box, select "Amazon Product Link" from the dropdown menu, and click the "Analyze Sentiment" button. The website will scrape the customer reviews from the product page and store them in a .csv file. The application will then automatically run the pre-trained NLP model on the review data to generate a binary sentiment classification prediction. The final analysis is displayed on the results page, detailing the total number of positive and negative reviews, along with extracted trending themes and top highlighted comments for each category.
 
 ## How it works
 
@@ -94,10 +97,5 @@ This website was developed as part of a project for the course CSN254. The pre-t
 
 ## Authors
 
-- [Sarish Nilakhe](https://github.com/Shinchan9913)
-- [Abhishek Kumar Singh](https://github.com/AbhiSinghiitr)
-- [Shambhoolal Narwaria](https://github.com/mr-narwaria)
-- [Alhan Charan Beshra](https://github.com/ezio2605)
-- [Abhishek Raj](https://github.com/Abhi9708bittu)
-- [Aryan Batra](https://github.com/Batraji7)
+- [Akash Patel](https://github.com/UserSky21)
 
