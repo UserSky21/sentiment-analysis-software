@@ -4,7 +4,7 @@ import csv
 from pytube import extract
 import os
 
-api_key = 'AIzaSyAWvcYyhifqwreIpseWyyFGMljWOEbO0lI'
+api_key = os.environ.get("YOUTUBE_API_KEY")
 
 
 
